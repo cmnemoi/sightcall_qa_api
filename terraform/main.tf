@@ -8,7 +8,7 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "~> 6.3"
+      version = "~> 6.35"
     }
   }
 }
@@ -32,6 +32,6 @@ resource "google_billing_account_iam_member" "billing_admin" {
 }
 
 resource "google_billing_project_info" "billing" {
-  project_id      = google_project.project.project_id
+  project         = google_project.project.project_id
   billing_account = var.billing_account_id
 }
