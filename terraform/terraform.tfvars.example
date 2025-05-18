@@ -1,7 +1,5 @@
-project_name = "sightcall-qa-api"
 project_id = "sightcall-qa-api"
-billing_account_id = "0123456789-0123456789-0123456789"
-billing_user_email = "example@example.com"
+terraform_sa_email = "terraform@example.iam.gserviceaccount.com"
 
 cloud_run_env_vars = {
     DATABASE_URL = "postgresql://postgres:password@vector_db:5432/vectordb"

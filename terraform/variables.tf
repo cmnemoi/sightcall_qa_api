@@ -33,3 +33,8 @@ variable "region" {
   type    = string
   default = "europe-west1"
 }
+
+variable "terraform_sa_email" {
+  type        = string
+  description = "Email of the service account used by Terraform"
+}

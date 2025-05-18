@@ -1,4 +1,4 @@
-name: Continuous Delivery
+name: Continuous Delivery (Infrastructure)
 
 on:
   push:
@@ -27,7 +27,14 @@ jobs:
       - name: Setup terraform.tfvars
         run: |
           cat <<EOF > terraform.tfvars
-          project_id = "${{ secrets.TF_PROJECT_ID }}"
+          project_id         = "${{ secrets.TF_PROJECT_ID }}"
+          terraform_sa_email = "${{ secrets.TF_SA_EMAIL }}"
+
+          cloud_run_env_vars = {
+            DATABASE_URL   = "${{ secrets.DATABASE_URL }}"
+            ENV            = "production"
+            OPENAI_API_KEY = "${{ secrets.OPENAI_API_KEY_PROD }}"
+          }
           EOF
 
       - name: Set up Terraform
