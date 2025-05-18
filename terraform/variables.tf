@@ -26,6 +26,8 @@ variable "region" {
 variable "enabled_apis" {
   type = list(string)
   default = [
+    "cloudresourcemanager.googleapis.com",
+    "cloudbilling.googleapis.com",
     "compute.googleapis.com",
     "run.googleapis.com",
     "sqladmin.googleapis.com",
