@@ -26,6 +26,7 @@ install:
 lint:
 	uv run ruff format .
 	uv run ruff check . --fix
+	terraform fmt -recursive
 
 semantic-release:
 	uv run semantic-release version --no-changelog --no-push --no-vcs-release --skip-build --no-commit --no-tag
