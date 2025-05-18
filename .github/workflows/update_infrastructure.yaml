@@ -29,10 +29,10 @@ jobs:
       - name: Setup terraform.tfvars
         run: |
           cat <<EOF > terraform.tfvars
-          project_name         = "${{ secrets.TF_PROJECT_NAME }}"
-          project_id           = "${{ secrets.TF_PROJECT_ID }}"
-          billing_account_id   = "${{ secrets.TF_BILLING_ACCOUNT_ID }}"
-          billing_user_email   = "${{ secrets.TF_BILLING_USER_EMAIL }}"
+          project_name       = "${{ secrets.TF_PROJECT_NAME }}"
+          project_id         = "${{ secrets.TF_PROJECT_ID }}"
+          billing_account_id = "${{ secrets.TF_BILLING_ACCOUNT_ID }}"
+          billing_user_email = "${{ secrets.TF_BILLING_USER_EMAIL }}"
           EOF
 
       - name: Set up Terraform
