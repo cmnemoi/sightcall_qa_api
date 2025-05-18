@@ -1,0 +1,62 @@
+name: Continuous Delivery
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "terraform/**"
+  pull_request:
+    branches: [main]
+    paths:
+      - "terraform/**"
+  workflow_dispatch:
+
+jobs:
+  terraform:
+    name: Update infrastructure
+    runs-on: ubuntu-24.04
+
+    defaults:
+      run:
+        working-directory: terraform
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup terraform.tfvars
+        run: |
+          cat <<EOF > terraform.tfvars
+          project_name       = "${{ secrets.TF_PROJECT_NAME }}"
+          project_id         = "${{ secrets.TF_PROJECT_ID }}"
+          billing_account_id = "${{ secrets.TF_BILLING_ACCOUNT_ID }}"
+          billing_user_email = "${{ secrets.TF_BILLING_USER_EMAIL }}"
+          EOF
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.12"
+
+      - name: Terraform Init
+        run: terraform init
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Check
+        run: terraform fmt -check
+
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+        run: terraform apply -auto-approve tfplan
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+        

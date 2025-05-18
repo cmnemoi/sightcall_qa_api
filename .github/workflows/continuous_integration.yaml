@@ -44,6 +44,8 @@ jobs:
   test:
     name: Tests
     runs-on: ubuntu-22.04
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
     steps:
       - uses: actions/checkout@v4
@@ -59,7 +61,7 @@ jobs:
         with:
           python-version-file: ".python-version"
       - name: Install dependencies
-        run: uv sync --locked --no-group dev --group test
+        run: uv sync --locked --no-group dev --group test --group indexation
       - name: Run tests with pytest
         run: make test
       - name: Upload coverage to Codecov
