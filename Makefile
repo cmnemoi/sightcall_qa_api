@@ -4,14 +4,18 @@ all: setup-env-variables setup-git-hooks install check test build-watch
 build-watch:
 	docker compose up --build --watch
 
-check: check-format check-lint check-types
+check: check-format check-lint check-types check-terraform
 
 check-format:
 	uv run ruff format . --diff
-	terraform fmt -check -recursive
 
 check-lint:
 	uv run ruff check .
+
+.PHONY: check-terraform
+check-terraform:
+	terraform fmt -check -recursive
+	terraform validate
 
 check-types:
 	uv run mypy .

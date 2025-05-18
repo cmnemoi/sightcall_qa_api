@@ -1,8 +1,9 @@
 locals {
   terraform_roles = [
-    "roles/run.admin",
     "roles/iam.serviceAccountUser",
-    "roles/storage.admin"
+    "roles/resourcemanager.projectIamAdmin",
+    "roles/run.admin",
+    "roles/storage.admin",
   ]
 }
 
