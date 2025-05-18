@@ -17,7 +17,11 @@ env:
 jobs:
   terraform:
     name: Update infrastructure
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+
+    defaults:
+      run:
+        working-directory: terraform
 
     steps:
       - name: Checkout
@@ -39,12 +43,6 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: "1.12"
-
-      - name: Change to Terraform directory
-        run: |
-          cd terraform
-          pwd
-        shell: bash
 
       - name: Terraform Init
         run: terraform init
