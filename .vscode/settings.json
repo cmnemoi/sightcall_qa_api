@@ -7,7 +7,7 @@
       "editor.defaultFormatter": "charliermarsh.ruff"
     },
     "python.analysis.autoImportCompletions": true,
-    "python.languageServer": "Pylance",
+    "python.languageServer": "Jedi",
     "python.testing.pytestArgs": [
         "tests"
     ],
@@ -25,7 +25,15 @@
             "splitTerminals": [
                 {
                     "name": "watch tests",
-                    "commands": ["uv run ptw . --clear --now"]
+                    "commands": ["uv run ptw . --clear --now tests/unit tests/integration tests/e2e -vv -s"]
+                },
+            ]
+        },
+        {
+            "splitTerminals": [
+                {
+                    "name": "watch api",
+                    "commands": ["docker compose up --watch"]
                 },
             ]
         },
@@ -36,6 +44,18 @@
                     "commands": ["aider --env $HOME/.aider.env"]
                 },
             ]
+        }
+    ],
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "vectordb",
+            "database": "vectordb",
+            "username": "postgres",
+            "password": "password"
         }
     ]
 }
