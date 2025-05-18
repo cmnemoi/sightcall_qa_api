@@ -1,5 +1,21 @@
+variable "project_name" {
+  type        = string
+  description = "The name of the GCP project"
+}
+
 variable "project_id" {
-  type = string
+  type        = string
+  description = "The ID of the GCP project"
+}
+
+variable "billing_account_id" {
+  type        = string
+  description = "The billing account ID to associate with the project"
+}
+
+variable "billing_user_email" {
+  type        = string
+  description = "The email of the user to grant billing permissions to"
 }
 
 variable "region" {
