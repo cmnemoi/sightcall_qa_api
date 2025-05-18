@@ -26,13 +26,24 @@ jobs:
       - name: Set up GCP credentials
         run: echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}" > gcp-key.json
 
+      - name: Setup terraform.tfvars
+        run: |
+          cat <<EOF > terraform.tfvars
+          project_name         = "${{ secrets.TF_PROJECT_NAME }}"
+          project_id           = "${{ secrets.TF_PROJECT_ID }}"
+          billing_account_id   = "${{ secrets.TF_BILLING_ACCOUNT_ID }}"
+          billing_user_email   = "${{ secrets.TF_BILLING_USER_EMAIL }}"
+          EOF
+
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: "1.12"
 
       - name: Change to Terraform directory
-        run: cd terraform
+        run: |
+          cd terraform
+          pwd
         shell: bash
 
       - name: Terraform Init

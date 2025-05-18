@@ -44,6 +44,8 @@ jobs:
   test:
     name: Tests
     runs-on: ubuntu-22.04
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
     steps:
       - uses: actions/checkout@v4
