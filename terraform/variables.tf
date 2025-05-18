@@ -1,6 +1,6 @@
 variable "api_image_url" {
   type    = string
-  default = "docker.io/cmnemoi/sightcall_qa_api:latest"
+  default = "docker.io/cmnemoi/sightcall-qa-api:latest"
 }
 
 variable "cloud_run_env_vars" {
