@@ -1,0 +1,61 @@
+services:
+  vector_db:
+    image: pgvector/pgvector:pg17
+    container_name: vector_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: vectordb
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - sightcall_qa
+
+
+  reverse-proxy:
+    image: traefik:v3.4.0
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+    ports:
+      - 80:80
+      - 8080:8080 # Traefik dashboard
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - sightcall_qa
+
+  app:
+    build:
+      context: .
+    labels:
+      - "traefik.http.routers.app.rule=Host(`sightcall-qa.localhost`)"
+    ports:
+    - mode: ingress
+      target: 3000
+      protocol: tcp
+    restart: always
+    develop:
+      watch:
+        - action: rebuild
+          path: ./sightcall_qa_api
+          target: /app
+          ignore:
+            - .venv/
+    env_file:
+      - .env
+    depends_on:
+      - vector_db
+    networks:
+      - sightcall_qa
+    extra_hosts:
+      - host.docker.internal:host-gateway
+
+volumes:
+  pgdata: 
+
+networks:
+  sightcall_qa:
+    driver: bridge

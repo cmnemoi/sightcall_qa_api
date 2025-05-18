@@ -4,7 +4,7 @@
 [![Continuous Delivery](https://github.com/cmnemoi/sightcall_qa_api/actions/workflows/create_github_release.yaml/badge.svg)](https://github.com/cmnemoi/sightcall_qa_api/actions/workflows/create_github_release.yaml)
 [![codecov](https://codecov.io/gh/cmnemoi/sightcall_qa_api/graph/badge.svg?token=FLAARH38AG)](https://codecov.io/gh/cmnemoi/sightcall_qa_api)
 
-A RAG-based API to ask question about SightCall.
+A RAG-based API to ask questions about SightCall.
 
 # Installation
 

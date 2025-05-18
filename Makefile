@@ -1,4 +1,8 @@
-all: setup-git-hooks install check test 
+all: setup-env-variables setup-git-hooks install check test build-watch
+
+.PHONY: build-watch
+build-watch:
+	docker compose up --build --watch
 
 check: check-format check-lint check-types
 
@@ -11,9 +15,13 @@ check-lint:
 check-types:
 	uv run mypy .
 
+.PHONY: indexation
+indexation:
+	uv run indexation https://sightcall.com/sitemap_index.xml --database-url postgresql://postgres:password@localhost:5432/vectordb
+
 install:
 	uv lock --locked
-	uv sync --locked --group dev --group lint --group test
+	uv sync --locked --group dev --group lint --group test --group indexation
 
 lint:
 	uv run ruff format .
@@ -24,6 +32,10 @@ semantic-release:
 	uv lock
 	git add pyproject.toml uv.lock
 	git commit --allow-empty --amend --no-edit 
+
+.PHONY: setup-env-variables
+setup-env-variables:
+	cp .env.example .env
 
 setup-git-hooks:
 	chmod +x hooks/pre-commit
@@ -36,5 +48,9 @@ test:
 
 upgrade-dependencies:
 	uv lock --upgrade
+
+.PHONY: watch
+watch:
+	docker compose up --watch
 
 .PHONY: all check check-format check-lint check-types install lint semantic-release setup-git-hooks test upgrade-dependencies
