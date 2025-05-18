@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket  = "sightcall-qa-api-tfstate"
-    prefix  = "state/sightcall-qa-api"
+    bucket = "sightcall-qa-api-tfstate"
+    prefix = "state/sightcall-qa-api"
   }
 }
