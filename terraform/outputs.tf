@@ -1,3 +1,3 @@
-output "project_id" {
-  value = var.project_id
+output "cloud_run_url" {
+  value = google_cloud_run_service.fastapi.status[0].url
 }

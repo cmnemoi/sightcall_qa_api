@@ -8,6 +8,7 @@ check: check-format check-lint check-types
 
 check-format:
 	uv run ruff format . --diff
+	terraform fmt -check -recursive
 
 check-lint:
 	uv run ruff check .
