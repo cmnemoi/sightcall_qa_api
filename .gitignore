@@ -198,9 +198,6 @@ override.tf.json
 #
 # !example_override.tf
 
-# Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
-# example: *tfplan*
-
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
@@ -211,4 +208,5 @@ terraform.rc
 # Ignore terragrunt cache
 .terragrunt-cache
 
-testing/
+# Terraform plans
+tfplan
