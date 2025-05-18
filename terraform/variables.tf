@@ -1,11 +1,12 @@
-variable "project_id" {
-  type        = string
-  description = "The ID of the GCP project"
+variable "api_image_url" {
+  type    = string
+  default = "docker.io/cmnemoi/sightcall_qa_api:latest"
 }
 
-variable "region" {
-  type    = string
-  default = "europe-west1"
+variable "cloud_run_env_vars" {
+  type        = map(string)
+  description = "Variables d'environnement pour Cloud Run"
+  default     = {}
 }
 
 variable "enabled_apis" {
@@ -17,9 +18,18 @@ variable "enabled_apis" {
     "run.googleapis.com",
     "sqladmin.googleapis.com",
     "iam.googleapis.com",
-    "secretmanager.googleapis.com",
     "serviceusage.googleapis.com",
     "logging.googleapis.com",
     "monitoring.googleapis.com"
   ]
+}
+
+variable "project_id" {
+  type        = string
+  description = "The ID of the GCP project"
+}
+
+variable "region" {
+  type    = string
+  default = "europe-west1"
 }
