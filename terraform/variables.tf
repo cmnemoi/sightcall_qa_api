@@ -9,12 +9,6 @@ variable "cloud_run_env_vars" {
   default     = {}
 }
 
-variable "db_password" {
-  type        = string
-  description = "Password for the database"
-  sensitive   = true
-}
-
 variable "enabled_apis" {
   type = list(string)
   default = [

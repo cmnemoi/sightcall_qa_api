@@ -4,17 +4,9 @@ resource "google_service_account" "cloudrun_sa" {
 }
 
 resource "google_cloud_run_service" "fastapi" {
-  name     = "sightcall-qa-api"
+  name     = "fastapi-api"
   location = var.region
   project  = var.project_id
-
-  metadata {
-    annotations = {
-      "run.googleapis.com/cloudsql-instances"   = google_sql_database_instance.sql_instance_sightcall_qa_api.connection_name
-      "run.googleapis.com/vpc-access-connector" = google_vpc_access_connector.serverless_connector.id
-      "run.googleapis.com/vpc-access-egress"    = "all-traffic"
-    }
-  }
 
   template {
     spec {
@@ -33,11 +25,6 @@ resource "google_cloud_run_service" "fastapi" {
             name  = env.key
             value = env.value
           }
-        }
-
-        env {
-          name  = "DATABASE_URL"
-          value = local.database_url
         }
       }
     }
