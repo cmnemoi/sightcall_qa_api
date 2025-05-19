@@ -57,6 +57,5 @@
             "username": "postgres",
             "password": "password"
         }
-    ],
-    "windsurfPyright.disableLanguageServices": true
+    ]
 }

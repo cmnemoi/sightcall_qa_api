@@ -9,12 +9,6 @@ variable "cloud_run_env_vars" {
   default     = {}
 }
 
-variable "db_password" {
-  type        = string
-  description = "Password for the database"
-  sensitive   = true
-}
-
 variable "enabled_apis" {
   type = list(string)
   default = [
@@ -26,8 +20,7 @@ variable "enabled_apis" {
     "iam.googleapis.com",
     "serviceusage.googleapis.com",
     "logging.googleapis.com",
-    "monitoring.googleapis.com",
-    "vpcaccess.googleapis.com"
+    "monitoring.googleapis.com"
   ]
 }
 
