@@ -4,7 +4,7 @@ resource "google_service_account" "cloudrun_sa" {
 }
 
 resource "google_cloud_run_service" "fastapi" {
-  name     = "fastapi-api"
+  name     = "sightcall-qa-api"
   location = var.region
   project  = var.project_id
 
