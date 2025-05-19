@@ -72,14 +72,11 @@ jobs:
         with:
           credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
 
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v2'
-
       - name: Deploy with Cloud Run
         run: |
           gcloud run deploy fastapi-api \
             --image=docker.io/${{ vars.DOCKERHUB_USERNAME }}/sightcall-qa-api:${{ steps.get_hash.outputs.hash }} \
             --platform=managed \
-            --region=${{ secrets.GCP_REGION }} \
+            --region=${{ vars.GCP_REGION }} \
             --allow-unauthenticated \
             --quiet
