@@ -51,3 +51,17 @@ resource "google_cloud_run_service_iam_member" "public_invoker" {
   role     = "roles/run.invoker"
   member   = "allUsers"
 }
+
+# Map custom domain to Cloud Run service
+resource "google_cloud_run_domain_mapping" "custom_domain" {
+  location = var.region
+  name     = var.api_url
+
+  metadata {
+    namespace = var.project_id
+  }
+
+  spec {
+    route_name = "fastapi-api"
+  }
+}
