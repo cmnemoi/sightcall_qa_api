@@ -210,3 +210,9 @@ terraform.rc
 
 # Terraform plans
 tfplan
+
+# Certificate Authority
+cert.pem
+ca.pem
+
+*.sql

@@ -20,7 +20,8 @@ variable "enabled_apis" {
     "iam.googleapis.com",
     "serviceusage.googleapis.com",
     "logging.googleapis.com",
-    "monitoring.googleapis.com"
+    "monitoring.googleapis.com",
+    "vpcaccess.googleapis.com"
   ]
 }
 

@@ -31,8 +31,10 @@ resource "google_cloud_run_service" "fastapi" {
 
     metadata {
       annotations = {
-        "autoscaling.knative.dev/minScale" = "1"
-        "autoscaling.knative.dev/maxScale" = "1"
+        "autoscaling.knative.dev/minScale"        = "1"
+        "autoscaling.knative.dev/maxScale"        = "1"
+        "run.googleapis.com/vpc-access-connector" = google_vpc_access_connector.run_connector.name
+        "run.googleapis.com/vpc-access-egress"    = "all-traffic"
       }
     }
   }
