@@ -4,7 +4,7 @@ resource "google_sql_database_instance" "sql_instance_sightcall_qa_api" {
   database_version = "POSTGRES_17"
 
   settings {
-    tier = "db-f1-micro"
+    tier = "db-g1-small"
 
     ip_configuration {
       ipv4_enabled    = false
