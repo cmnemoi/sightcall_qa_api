@@ -2,6 +2,7 @@ import logging
 from http import HTTPStatus
 
 from fastapi import Depends, FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from haystack.document_stores.types import DocumentStore
 
 from sightcall_qa_api import __version__
@@ -15,6 +16,17 @@ logger = logging.getLogger("sightcall_qa_api")
 
 app = FastAPI(
     title="SightCall Q&A API", description="A RAG-based API to ask questions about SightCall.", version=__version__
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://sightcall-qa.netlify.app"],
+    allow_origin_regex=r"https?://(localhost|127\.0\.0\.1|::1)(:\d+)?",
+    allow_credentials=True,
+    allow_methods=["GET", "OPTIONS", "POST"],
+    allow_headers=["*"],
+    expose_headers=["*"],
+    max_age=3_600,
 )
 
 
