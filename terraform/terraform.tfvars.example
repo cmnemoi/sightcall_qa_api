@@ -1,8 +1,8 @@
+db_password = "password"
 project_id = "sightcall-qa-api"
 terraform_sa_email = "terraform@example.iam.gserviceaccount.com"
 
 cloud_run_env_vars = {
-    DATABASE_URL = "postgresql://postgres:password@vector_db:5432/vectordb"
     ENV = "production"
     OPENAI_API_KEY = "sk-"
 }

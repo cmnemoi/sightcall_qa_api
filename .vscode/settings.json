@@ -7,7 +7,7 @@
       "editor.defaultFormatter": "charliermarsh.ruff"
     },
     "python.analysis.autoImportCompletions": true,
-    "python.languageServer": "Pylance",
+    "python.languageServer": "None",
     "python.testing.pytestArgs": [
         "tests"
     ],
@@ -57,5 +57,6 @@
             "username": "postgres",
             "password": "password"
         }
-    ]
+    ],
+    "windsurfPyright.disableLanguageServices": true
 }
