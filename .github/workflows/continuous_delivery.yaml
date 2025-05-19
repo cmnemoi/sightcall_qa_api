@@ -72,8 +72,12 @@ jobs:
         with:
           credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
 
-      - name: 'Set up Cloud SDK'
+      - name: Set up Cloud SDK
         uses: 'google-github-actions/setup-gcloud@v2'
+
+      - name: Clear any invalid API endpoint override
+        run: |
+          gcloud config unset api_endpoint_overrides/run || true  
 
       - name: Deploy with Cloud Run
         run: |
