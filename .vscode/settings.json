@@ -7,7 +7,7 @@
       "editor.defaultFormatter": "charliermarsh.ruff"
     },
     "python.analysis.autoImportCompletions": true,
-    "python.languageServer": "Jedi",
+    "python.languageServer": "Pylance",
     "python.testing.pytestArgs": [
         "tests"
     ],

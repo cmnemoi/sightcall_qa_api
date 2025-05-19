@@ -72,7 +72,6 @@ Answer:
             },
             include_outputs_from={"retriever", "llm"},
         )
-        logger.debug(results)
 
         return Response(
             answer=results["llm"]["replies"][0],
