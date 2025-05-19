@@ -2,7 +2,7 @@ name: Continuous Delivery
 
 on:
   workflow_run:
-    workflows: ["Continous Delivery (Infrastructure)", "Continuous Integration"]
+    workflows: ["Continuous Integration", "Continous Delivery (Infrastructure)"]
     types:
       - completed
   workflow_dispatch:
