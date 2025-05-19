@@ -2,6 +2,7 @@ resource "google_sql_database_instance" "sql_instance_sightcall_qa_api" {
   name             = "sightcall-qa-api-db"
   region           = var.region
   database_version = "POSTGRES_17"
+  edition          = "ENTERPRISE"
 
   settings {
     tier = "db-f1-micro"
