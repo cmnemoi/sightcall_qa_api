@@ -26,7 +26,7 @@ resource "google_sql_database" "vectordb" {
 }
 
 resource "google_sql_user" "db_user" {
-  name     = "sightcall_qa_api_user"
-  instance = google_sql_database_instance.sql_instance_sightcall_qa_api.name
-  password = var.db_password
+  name        = "sightcall_qa_api_user"
+  instance    = google_sql_database_instance.sql_instance_sightcall_qa_api.name
+  password_wo = var.db_password
 }
